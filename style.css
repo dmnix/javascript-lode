@@ -1,0 +1,119 @@
+:root {
+    --text-color: rgb(220, 220, 220);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: black;
+    z-index: 1;
+}
+/* Celoobrazovková zpráva*/
+#fullscreenMessage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    background-color: rgba(255, 255,255, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+/*Hlavní část*/
+main {
+    height: 700px;
+    width: 800px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    color: black;
+    z-index: 1;
+}
+#opponentsArea {
+    height: 65%;
+}
+#playersArea {
+    height: 35%;
+}
+.areas {
+    display: flex;
+}
+.areas div {
+    flex: 1;
+}
+.infoArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#message {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+    width: 90%;
+    border-bottom: 1px solid black;
+}
+.shipTable {
+    border-collapse: collapse;
+    height: 95%;
+    margin: 0 auto;
+    /*Šířka tabulky se nastaví pomocí JavaScriptu*/
+}
+.shipTable td {
+    border: 2px solid  black;
+    height: 10%;
+}
+#opponentsArea .shipTable td:hover {
+    background-color: rgba(255, 255, 255, 0.3)
+}
+
+.shipsCountTable {
+    width: 90%;
+    text-align: center;
+}
+
+/*Znázornění lodí*/
+.ship {
+    background-color: black;
+    height: 20px;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: rgb(186, 186, 186);
+    font-size: 13px;
+}
+.ship1 {
+    width: 25%;
+}
+.ship2 {
+    width: 50%;
+}
+.ship3 {
+    width: 70%;
+}
+.ship4 {
+    width: 100%;
+}
