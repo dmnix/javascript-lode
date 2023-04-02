@@ -13,8 +13,11 @@ class PlayerTemplate {
         this.generateTable(tableParentElement);
         this.updateShipCount();
     }
+
     collisionCheck(orientation, rowOrColumn, cell, shipType){
         for(let i = 0; i < shipType; i++){
+            /* Ověření zda nově vygenerovaná loď se nenachází na již zabraném místě. Žádné dvě lodě se navzájem nesmí
+            dotýkat svými hranami (rohy ano)*/
             switch(orientation){
                 case 0: {
                     if(this.tableLogical[rowOrColumn][cell] != 0) return false;
@@ -40,7 +43,6 @@ class PlayerTemplate {
                     }
                     if(rowOrColumn > 0){
                         if(this.tableLogical[cell][rowOrColumn-1] != 0) return false
-                        
                     }
                     if(cell < 9){
                         if(this.tableLogical[cell+1][rowOrColumn] != 0) return false;
@@ -67,8 +69,6 @@ class PlayerTemplate {
                 /* Pokud je vygenerovánaná pozice lodi již obsazena jinou lodí, bude se zkoušet umístit novou loď na první možné
                 neobsazené místo.*/
                 if(this.collisionCheck(orientation, rowOrColumn, cell, shipType) == false){
-                    
-
                     while(this.collisionCheck(orientation, rowOrColumn, cell, shipType) == false){
                             if(cell < 10-shipType && rowOrColumn <= 9){
                                 cell++;
@@ -81,7 +81,6 @@ class PlayerTemplate {
                             }
                     }          
                 }
-                
 
                 // Umístění lodi do tabulky
                 for(let j = 0; j < shipType; j++){
@@ -101,6 +100,7 @@ class PlayerTemplate {
             }
         }
     }
+
     generateTable(parentElement){
         this.tableElement.classList.add("shipTable");
         for(let i = 0; i < 10; i++){
@@ -155,6 +155,7 @@ class PlayerTemplate {
                 
             }
         }
+
         for(let i = 0; i < 4; i++){
             if(this.shipsCount[i] != 0){
                 victory = false;
@@ -163,20 +164,20 @@ class PlayerTemplate {
         }
         if(victory){
             let fullscreenMessage = document.querySelector("#fullscreenMessage");
+            let fullscreenMessageParagraph = document.querySelector("#fullscreenMessage p");
+            document.querySelector("#fullscreenMessage h1").textContent = "Konec hry";
             switch(this.playerType){
                 case "h": {
-                    fullscreenMessage.textContent = "Prohráli jste";
+                    fullscreenMessageParagraph.textContent = "Prohráli jste";
                     break
                 }
                 case "r": {
-                    fullscreenMessage.textContent = "Vyhráli jste";
+                    fullscreenMessageParagraph.textContent = "Vyhráli jste";
                 }
             }
             fullscreenMessage.style.display = "flex";
-        }
-        
+        } 
     }
-    
 }
 
 /* Třídy obou hráčů reprezentjí jejich vlastní flotily (tabulka, počty lodí apod.), proto každá hrající strana (člověk vs počítač) pracuje s třídou svého protivníka*/
@@ -204,9 +205,6 @@ class HumanPlayer extends PlayerTemplate {
             }
         }
     }
-
-
-
 
     guess(){
         let randomCellIndex = Math.floor(Math.random()*this.remainingCells.length);

@@ -21,14 +21,30 @@ body {
 #fullscreenMessage {
     width: 100vw;
     height: 100vh;
+    padding: 50px;
     position: absolute;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    flex-direction: column;
+    font-size: 30px;
+    text-align: center;
     background-color: rgba(255, 255,255, 0.3);
     backdrop-filter: blur(10px);
     z-index: 2;
+}
+#fullscreenMessage button {
+    font-size: 20px;
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+#fullscreenMessage button:hover {
+    background-color: #1e94b4;
+    cursor: pointer;
 }
 
 /*Hlavní část*/
@@ -39,7 +55,6 @@ main {
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    color: black;
     z-index: 1;
 }
 #opponentsArea {
